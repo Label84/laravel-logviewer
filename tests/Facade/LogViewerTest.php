@@ -15,7 +15,7 @@ class LogViewerTest extends TestCase
     /** @test */
     public function it_can_set_the_file()
     {
-        config()->set('logviewer.log_files_directory', 'tests\dummy_data\storage\logs');
+        config()->set('logviewer.log_files_directory', 'tests/dummy_data/storage/logs');
 
         $files = LogViewer::files();
 
@@ -27,7 +27,7 @@ class LogViewerTest extends TestCase
     /** @test */
     public function it_can_set_the_path()
     {
-        $logs = LogViewer::setPath('tests\dummy_data\storage\logs')->setChannel('daily')->logs();
+        $logs = LogViewer::setPath('tests/dummy_data/storage/logs')->setChannel('daily')->logs();
 
         $this->assertEquals('laravel-2021-01-02.log', basename($logs->first()->path));
     }
@@ -35,7 +35,7 @@ class LogViewerTest extends TestCase
     /** @test */
     public function it_can_set_the_channel()
     {
-        config()->set('logviewer.log_files_directory', 'tests\dummy_data\storage\logs');
+        config()->set('logviewer.log_files_directory', 'tests/dummy_data/storage/logs');
 
         $logs = LogViewer::setChannel('single')->logs();
 

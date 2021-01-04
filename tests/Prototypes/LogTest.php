@@ -23,7 +23,7 @@ class LogTest extends TestCase
     /** @test */
     public function it_can_parse_log_entry_from_file()
     {
-        config()->set('logviewer.log_files_directory', 'tests\dummy_data\storage\logs');
+        config()->set('logviewer.log_files_directory', 'tests/dummy_data/storage/logs');
 
         $files = LogViewer::files();
         $exampleFile = $files[0];
@@ -37,7 +37,7 @@ class LogTest extends TestCase
     /** @test */
     public function it_can_parse_log_entry_to_prototype()
     {
-        config()->set('logviewer.log_files_directory', 'tests\dummy_data\storage\logs');
+        config()->set('logviewer.log_files_directory', 'tests/dummy_data/storage/logs');
 
         $files = LogViewer::files();
         $exampleFile = $files[0];
@@ -57,7 +57,7 @@ class LogTest extends TestCase
     public function it_marks_log_as_new_when_created_within_last_10_minutes()
     {
         $fm = new FactoryMuffin();
-        $fm->loadFactories('tests\factories');
+        $fm->loadFactories('tests/factories');
 
         $log = $fm->instance(Log::class, [
            'date' => now()->subMinutes(9),
@@ -70,7 +70,7 @@ class LogTest extends TestCase
     public function it_marks_log_as_not_new_when_created_more_than_10_minutes_ago()
     {
         $fm = new FactoryMuffin();
-        $fm->loadFactories('tests\factories');
+        $fm->loadFactories('tests/factories');
 
         $log = $fm->instance(Log::class, [
            'date' => now()->subMinutes(11),
@@ -82,7 +82,7 @@ class LogTest extends TestCase
     /** @test */
     public function it_excludes_all_logs_that_are_below_the_minimum_threshold()
     {
-        config()->set('logviewer.log_files_directory', 'tests\dummy_data\storage\logs');
+        config()->set('logviewer.log_files_directory', 'tests/dummy_data/storage/logs');
 
         $logs = LogViewer::setFile('laravel-2021-01-01.log')->logs();
 
@@ -108,7 +108,7 @@ class LogTest extends TestCase
     {
         $this->expectException(LogFileException::class);
 
-        LogViewer::setFile('tests\dummy_data\storage\logs\empty')->logs();
+        LogViewer::setFile('tests/dummy_data/storage/logs/empty')->logs();
     }
 
     /** @test */

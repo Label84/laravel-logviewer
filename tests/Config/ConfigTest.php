@@ -15,7 +15,7 @@ class ConfigTest extends TestCase
     /** @test */
     public function it_can_list_files_from_directory()
     {
-        config()->set('logviewer.log_files_directory', 'tests\dummy_data\storage\logs');
+        config()->set('logviewer.log_files_directory', 'tests/dummy_data/storage/logs');
 
         $files = LogViewer::files();
 

@@ -94,7 +94,7 @@ $fm->define(Log::class)->setMaker(function () use ($date, $logger, $level) {
     $property->setValue($log, $stack);
 
     $property = new ReflectionProperty(Log::class, 'path');
-    $property->setValue($log, 'tests\dummy\storage\logs\laravel.log');
+    $property->setValue($log, 'tests/dummy/storage/logs/laravel.log');
 
     return $log;
 });

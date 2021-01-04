@@ -76,7 +76,7 @@ class LogViewer
             $this->path = config('logviewer.log_files_directory');
         }
 
-        return $this->path.DIRECTORY_SEPARATOR.$file;
+        return $this->path.'/'.$file;
     }
 
     public function files(string $prefix = ''): array

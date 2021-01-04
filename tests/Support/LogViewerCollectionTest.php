@@ -18,7 +18,7 @@ class LogViewerCollectionTest extends TestCase
         parent::setUp();
 
         $this->fm = new FactoryMuffin();
-        $this->fm->loadFactories('tests\factories');
+        $this->fm->loadFactories('tests/factories');
 
         $this->collection = new LogViewerCollection($this->fm->seed(20, Log::class, [], false));
     }
