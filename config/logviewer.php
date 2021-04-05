@@ -34,7 +34,7 @@ return [
      * Supported channels: single, daily
      *
      * single => the package will use laravel.log
-     * daily => the package will use latest daily log file created with the format laravel-yyyy-mm-dd.log
+     * daily => the package will use latest daily log file created with the format laravel-YYYY-MM-DD.log
      */
     'log_channel' => 'single',
 
@@ -46,7 +46,7 @@ return [
     'marked_as_new_in_minutes' => 10,
 
     /*
-     * Minimum threshold level for records, everything below this threshold will be excluded by default.
+     * Minimum threshold level for records, everything below this threshold will be excluded.
      */
     'minimum_level' => LogViewerLevel::DEBUG,
 

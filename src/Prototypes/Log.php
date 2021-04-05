@@ -48,8 +48,8 @@ class Log
         $this->logger = $data['logger'];
         $this->level = Str::lower($data['level']);
         $this->message = $data['message'] ?? null;
-        $this->context = json_decode($data['context'] ?? '', true) ?? null;
-        $this->extra = json_decode($data['extra'] ?? '', true) ?? null;
+        $this->context = (string) json_encode($data['context']) ?? null;
+        $this->extra = (string) json_encode($data['extra']) ?? null;
     }
 
     public function isNew(): bool
