@@ -47,9 +47,22 @@ class Log
         $this->date = $date;
         $this->logger = $data['logger'];
         $this->level = Str::lower($data['level']);
-        $this->message = $data['message'] ?? null;
-        $this->context = (string) json_encode($data['context']) ?? null;
-        $this->extra = (string) json_encode($data['extra']) ?? null;
+        $this->message = $this->combineMessage($data);
+        $this->context = isset($data['context']) ? (string) json_encode($data['context']) : null;
+        $this->extra = isset($data['extra']) ? (string) json_encode($data['extra']) : null;
+    }
+
+    private function combineMessage(array $data): string
+    {
+        if (isset($data['context']) && isset($data['extra'])) {
+            if (Str::length($data['context'].$data['extra']) < 100) {
+                return Str::of($data['message'])
+                    ->append(' ')->append($data['context'])
+                    ->append(' ')->append($data['extra']);
+            }
+        }
+
+        return $data['message'] ?? null;
     }
 
     public function isNew(): bool
