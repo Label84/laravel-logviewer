@@ -52,7 +52,7 @@ class Log
         $this->extra = isset($data['extra']) ? (string) json_encode($data['extra']) : null;
     }
 
-    private function combineMessage(array $data): string
+    private function combineMessage(array $data): ?string
     {
         if (isset($data['context']) && isset($data['extra'])) {
             if (Str::length($data['context'].$data['extra']) < 100) {
