@@ -97,7 +97,7 @@ class LogViewer
             throw LogFileException::fileNotFound($path);
         }
 
-        $maxAllowedFileSize = (config('logviewer.max_file_size') ?? 100) * 1048576;
+        $maxAllowedFileSize = (int) (config('logviewer.max_file_size') ?? 100) * 1048576;
 
         if (File::size($path) > $maxAllowedFileSize) {
             throw LogFileException::fileSizeTooLarge($path, File::size($path), $maxAllowedFileSize);
