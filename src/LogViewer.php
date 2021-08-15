@@ -93,11 +93,17 @@ class LogViewer
 
     protected function getFileContent(string $path): string
     {
-        if (File::exists($path)) {
-            return File::get($path);
+        if (!File::exists($path)) {
+            throw LogFileException::fileNotFound($path);
         }
 
-        throw LogFileException::fileNotFound($path);
+        $maxAllowedFileSize = (config('logviewer.max_file_size') ?? 100) * 1048576;
+
+        if (File::size($path) > $maxAllowedFileSize) {
+            throw LogFileException::fileSizeTooLarge($path, File::size($path), $maxAllowedFileSize);
+        }
+
+        return File::get($path);
     }
 
     protected function parseContent(string $content): array

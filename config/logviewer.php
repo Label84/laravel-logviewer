@@ -51,6 +51,11 @@ return [
     'minimum_level' => LogViewerLevel::DEBUG,
 
     /*
+     * Maximum allowed file size of the log file in MB. To prevent memory exhaustion errors.
+     */
+    'max_file_size' => 25,
+
+    /*
      * CSS classes to be applied to the level badges in the views.
      */
     'classes' => [
