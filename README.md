@@ -29,7 +29,8 @@ Laravel LogViewer enables you to view and filter through the logs of your Larave
 
 | Version       | Release       |
 |:--------------|:-------------:|
-| 7.x to 8.x    | 1.0           |
+| 8.x           | ^2.0          |
+| 7.x           | ^1.0          |
 
 ## Limitations
 
