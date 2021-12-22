@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-logviewer.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-logviewer)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/label84/laravel-logviewer/run-tests?label=Tests&style=flat-square)
 
-Laravel LogViewer enables you to view and filter through the logs of your Laravel application.
+Laravel LogViewer enables you to view and filter your Laravel logs in the browser.
 
 ![LogViewer screenshot](./docs/screenshot_default.png?raw=true "LogViewer Screenshot")
 
@@ -14,7 +14,8 @@ Laravel LogViewer enables you to view and filter through the logs of your Larave
 - [Limitations](#limitations)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Configuration](#configuration)
+- [Settings](#settings)
+- [Examples](#examples)
 - [Notes](#Notes)
 - [Tests](#tests)
 - [Security](#security)
@@ -23,52 +24,46 @@ Laravel LogViewer enables you to view and filter through the logs of your Larave
 ## Requirements
 
 - Laravel 7.x or 8.x
-- PHP >= 7.4 or 8.0
+- PHP >=7.4 or 8.0
 
 ## Laravel support
 
-| Version       | Release       |
-|:--------------|:-------------:|
-| 8.x           | ^2.0          |
-| 7.x           | ^1.0          |
+| Version | Release |
+|---------|---------|
+| 8.x     | ^2.0    |
+| 7.x     | ^1.0    |
 
 ## Limitations
 
-The package only support logs created by the [Monolog PHP logging libary](https://seldaek.github.io/monolog). 
-
-Laravel use this libary by default for the 'single' and 'daily' channels. For more information see [Laravel - Logging](https://laravel.com/docs/8.x/logging).
+This package only support logs created by the [Monolog PHP logging libary](https://seldaek.github.io/monolog). Laravel uses this libary by default for the 'single' and 'daily' channels. For more information see [Laravel - Logging](https://laravel.com/docs/8.x/logging).
 
 ## Installation
 
 ### 1. Require package
 
-Add the package to your application:
+Add the package to your application.
 
 ```sh
 composer require label84/laravel-logviewer
 ```
 
-You can also do this manually by updating your composer.json file.
+You can also manually update your composer.json.
 
 ### 2. Install package
 
-Add the config to your application:
+Add the config file to your application.
 
 ```sh
 php artisan logviewer:install
-```
 
-#### 2.1 Install package manually (alternative)
+OR
 
-You can also install the package manually by executing the following command:
-
-```sh
 php artisan vendor:publish Label84\LogViewer\LogViewerServiceProvider --config
 ```
 
-#### 2.2 Publish the views (optional)
+#### 2.1 Publish the views (optional)
 
-To change the default views, you can publish them to your application with the following command:
+To change the default views, you can publish the views to your application.
 
 ```sh
 php artisan vendor:publish Label84\LogViewer\LogViewerServiceProvider --views
@@ -76,13 +71,13 @@ php artisan vendor:publish Label84\LogViewer\LogViewerServiceProvider --views
 
 ## Usage
 
-To preview the logs of your application visit: /admin/logviewer
+Visit the following url in your application: ``/admin/logviewer``
 
-You can change the route in the config file.
+You can change the url in the config file.
 
-### Filter the logs
+### 1. Query filters
 
-You can filter the listed logs in the overview with query parameters (the ?foo=bar ones).
+You can filter the logs in the overview with query parameters - example ``/admin/logviewer?date=today&message=kiss``.
 
 | Parameter     | Value                                    | Example           |
 |:--------------|:-----------------------------------------|:------------------|
@@ -93,101 +88,43 @@ You can filter the listed logs in the overview with query parameters (the ?foo=b
 | logger=       | string                                   | local             |
 | message=      | string                                   | love              |
 
-## Configuration
+## Settings
 
-### Settings
+To use the package in your own Controllers you can use the following settings. If you use the default package features and views you probably won't need this.
 
-By default the LogViewer will use the path/channel set in the config file.
-
-Laravel uses the 'single' channel as default log channel (channel defined in stack) and in that case you don't have to configure anything. If your application uses the 'daily' channel you can you have to change the channel to 'daily' in the config file.
-
-To change the directory and/or file, change the following to values in the config file:
-
-- log_files_directory
-- log_channel
-
-#### Set log dynamically
-
-To set the log path/file/channel dynamically:
-
-##### 1. Set channel
+### 1. Set channel
 
 To dynamically set the channel:
 
 ```php
+use LogViewer;
+
 LogViewer::setChannel(string $channel);
 ```
 
-##### 2. Set path
+### 2. Set path
 
 To dynamically set the path:
 
 ```php
+use LogViewer;
+
 LogViewer::setPath(string $path);
 ```
 
-##### 3. Set file
+### 3. Set file
 
 To dynamically set the file:
 
 ```php
+use LogViewer;
+
 LogViewer::setFile(string $file);
 ```
 
-### LogViewer collection
+### 4. Available methods
 
-The package also has a `LogViewerCollection` class that extends the [Laravel collection](https://laravel.com/docs/8.x/collections).
-
-The LogViewerCollection is an convenient wrapper for the records in the log file and allows you to easily filter them.
-
-```php
-use LogViewer;
-
-public function index(Request $request): View
-{
-    $items = LogViewer::logs()->paginate(50);
-
-    return view('yourView', compact('items'));
-}
-```
-
-#### Show all logs created today with level ERROR or higher
-
-```php
-use Label84\LogViewer\Support\LogViewerLevel;
-use LogViewer;
-
-public function index(Request $request): View
-{
-    $items = LogViewer::logs()
-        ->whereDate(today())
-        ->whereMinLevel(LogViewerLevel::ERROR)
-        ->paginate(50);
-
-    return view('yourView', compact('items'));
-}
-```
-
-#### Show all logs of level DEBUG where message contains 'ABC' or 'DEF'
-
-```php
-use Label84\LogViewer\Support\LogViewerLevel;
-use LogViewer;
-
-public function index(Request $request): View
-{
-    $items = LogViewer::logs()
-        ->whereLevel(LogViewerLevel::DEBUG)
-        ->whereMessage(['ABC', 'DEF'])
-        ->paginate(50);
-
-    return view('yourView', compact('items'));
-}
-```
-
-#### Collection methods
-
-The `LogViewerCollection` extends the standard Laravel collection. Therefore you can still use all other available methods of the collection class.
+The `LogViewerCollection` extends ``Illuminate\Support\Collection`` with the following methods:
 
 - whereLevel(int|string $level)
 - whereMinLevel(int|string $level)
@@ -201,9 +138,67 @@ The `LogViewerCollection` extends the standard Laravel collection. Therefore you
 - whereNotMessage(string|array $query)
 - whereUser(int $user)
 
-#### Levels
+## Examples
 
-In the `LogViewerLevel` class you can find all levels.
+### Example 1
+
+List all logs.
+
+```php
+use LogViewer;
+
+public function index(Request $request): View
+{
+    $items = LogViewer::logs()->paginate(50);
+
+    return view('dashboard', compact('items'));
+}
+```
+
+### Example 2
+
+List all logs created today with a minimum level of ERROR.
+
+```php
+use Label84\LogViewer\Support\LogViewerLevel;
+use LogViewer;
+
+public function index(Request $request): View
+{
+    $items = LogViewer::logs()
+        ->whereDate(today())
+        ->whereMinLevel(LogViewerLevel::ERROR)
+        ->paginate(50);
+
+    return view('dashboard', compact('items'));
+}
+```
+
+### Example 3
+
+List all logs with a minium level of DEBUG that contains the words 'Foo' and/or 'Bar'.
+
+```php
+use Label84\LogViewer\Support\LogViewerLevel;
+use LogViewer;
+
+public function index(Request $request): View
+{
+    $items = LogViewer::logs()
+        ->whereLevel(LogViewerLevel::DEBUG)
+        ->whereMessage(['Foo', 'Bar'])
+        ->paginate(50);
+
+    return view('dashboard', compact('items'));
+}
+```
+
+## Notes
+
+- Bootstrap 5 is used by default
+- Middleware 'web' + 'auth' are applied by default
+
+### Levels
 
 | Level         |     |
 |:--------------|-----|
@@ -216,11 +211,6 @@ In the `LogViewerLevel` class you can find all levels.
 | Info          | 200 |
 | Debug         | 100 |
 
-## Notes
-
-- Bootstrap 5 is used for the default interface
-- Middleware [web] + [auth] are applied by default
-
 ## Tests
 
 ```sh
@@ -229,7 +219,7 @@ In the `LogViewerLevel` class you can find all levels.
 
 ## Security
 
-By default the package only applies the [web] and [auth] middleware to the LogViewer routes. When used in production make sure you apply extra middleware or other security measure to prevent unwanted usage.
+By default this package only applies the 'web' and 'auth' middleware to the routes. When used in production make sure you apply additional middleware or other security measures to restrict access.
 
 ## License
 
