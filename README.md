@@ -11,12 +11,12 @@ Laravel LogViewer enables you to view and filter your Laravel logs in the browse
 ![LogViewer screenshot](./docs/screenshot_default.png?raw=true "LogViewer Screenshot")
 
 - [Requirements](#requirements)
-- [Limitations](#limitations)
+- [Laravel support](#laravel-support)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Settings](#settings)
-- [Examples](#examples)
-- [Notes](#Notes)
+  - [Query filters](#query-filters)
+  - [Settings](#settings)
+  - [Examples](#examples)
 - [Tests](#tests)
 - [Security](#security)
 - [License](#license)
@@ -75,7 +75,7 @@ Visit the following url in your application: ``/admin/logviewer``
 
 You can change the url in the config file.
 
-### 1. Query filters
+### Query filters
 
 You can filter the logs in the overview with query parameters - example ``/admin/logviewer?date=today&message=kiss``.
 
@@ -88,11 +88,11 @@ You can filter the logs in the overview with query parameters - example ``/admin
 | logger=       | string                                   | local             |
 | message=      | string                                   | love              |
 
-## Settings
+### Settings
 
 To use the package in your own Controllers you can use the following settings. If you use the default package features and views you probably won't need this.
 
-### 1. Set channel
+#### 1. Set channel
 
 To dynamically set the channel:
 
@@ -102,7 +102,7 @@ use LogViewer;
 LogViewer::setChannel(string $channel);
 ```
 
-### 2. Set path
+#### 2. Set path
 
 To dynamically set the path:
 
@@ -112,7 +112,7 @@ use LogViewer;
 LogViewer::setPath(string $path);
 ```
 
-### 3. Set file
+#### 3. Set file
 
 To dynamically set the file:
 
@@ -122,7 +122,7 @@ use LogViewer;
 LogViewer::setFile(string $file);
 ```
 
-### 4. Available methods
+#### 4. Available methods
 
 The `LogViewerCollection` extends ``Illuminate\Support\Collection`` with the following methods:
 
@@ -138,9 +138,9 @@ The `LogViewerCollection` extends ``Illuminate\Support\Collection`` with the fol
 - whereNotMessage(string|array $query)
 - whereUser(int $user)
 
-## Examples
+### Examples
 
-### Example 1
+#### Example 1
 
 List all logs.
 
@@ -155,7 +155,7 @@ public function index(Request $request): View
 }
 ```
 
-### Example 2
+#### Example 2
 
 List all logs created today with a minimum level of ERROR.
 
@@ -174,7 +174,7 @@ public function index(Request $request): View
 }
 ```
 
-### Example 3
+#### Example 3
 
 List all logs with a minium level of DEBUG that contains the words 'Foo' and/or 'Bar'.
 
@@ -193,12 +193,7 @@ public function index(Request $request): View
 }
 ```
 
-## Notes
-
-- Bootstrap 5 is used by default
-- Middleware 'web' + 'auth' are applied by default
-
-### Levels
+#### Levels
 
 | Level         |     |
 |:--------------|-----|
