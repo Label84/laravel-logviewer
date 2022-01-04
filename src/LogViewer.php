@@ -154,8 +154,8 @@ class LogViewer
             }
         }
 
-        $logs->offsetUnset('heading'); // @phpstan-ignore-line
-        $logs->offsetUnset('data'); // @phpstan-ignore-line
+        $logs->offsetUnset('heading');
+        $logs->offsetUnset('data');
 
         $logs = $this->excludeLogsBelowThreshold($logs, config('logviewer.minimum_level') ?? LogViewerLevel::DEBUG);
 
