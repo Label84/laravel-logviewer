@@ -209,7 +209,8 @@ public function index(Request $request): View
 ## Tests
 
 ```sh
-./vendor/bin/phpunit
+composer analyse
+composer test
 ```
 
 ## Security
