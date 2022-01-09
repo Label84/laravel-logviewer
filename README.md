@@ -58,7 +58,7 @@ php artisan logviewer:install
 
 OR
 
-php artisan vendor:publish Label84\LogViewer\LogViewerServiceProvider --config
+php artisan vendor:publish --provider="Label84\LogViewer\LogViewerServiceProvider" --tag="config"
 ```
 
 #### 2.1 Publish the views (optional)
@@ -66,7 +66,7 @@ php artisan vendor:publish Label84\LogViewer\LogViewerServiceProvider --config
 To change the default views, you can publish the views to your application.
 
 ```sh
-php artisan vendor:publish Label84\LogViewer\LogViewerServiceProvider --views
+php artisan vendor:publish --provider="Label84\LogViewer\LogViewerServiceProvider" --tag="views"
 ```
 
 ## Usage
