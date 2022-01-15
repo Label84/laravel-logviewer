@@ -18,18 +18,18 @@ Laravel LogViewer enables you to view and filter your Laravel logs in the browse
   - [Settings](#settings)
   - [Examples](#examples)
 - [Tests](#tests)
-- [Security](#security)
 - [License](#license)
 
 ## Requirements
 
-- Laravel 7.x or 8.x
+- Laravel 8.x or 9.x
 - PHP >=7.4 or 8.x
 
 ## Laravel support
 
 | Version | Release |
 |---------|---------|
+| 9.x     | ^2.1    |
 | 8.x     | ^2.0    |
 | 7.x     | ^1.0    |
 
@@ -212,10 +212,6 @@ public function index(Request $request): View
 composer analyse
 composer test
 ```
-
-## Security
-
-By default this package only applies the 'web' and 'auth' middleware to the routes. When used in production make sure you apply additional middleware or other security measures to restrict access.
 
 ## License
 
