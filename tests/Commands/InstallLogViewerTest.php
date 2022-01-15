@@ -24,7 +24,7 @@ class InstallLogViewerTest extends TestCase
 
         Artisan::call('vendor:publish', [
             '--provider' => "Label84\LogViewer\LogViewerServiceProvider",
-            '--tag' => 'config'
+            '--tag' => 'config',
         ]);
 
         $this->assertTrue(File::exists(config_path('logviewer.php')));

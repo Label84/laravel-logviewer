@@ -105,7 +105,7 @@ class LogViewerCollection extends Collection
             $query = [$query];
         }
 
-        return $this->filter(fn ($item) => !Str::contains($item->message, $query));
+        return $this->filter(fn ($item) => ! Str::contains($item->message, $query));
     }
 
     public function whereUser(int $userId, string $userIdColumn = 'userId'): self

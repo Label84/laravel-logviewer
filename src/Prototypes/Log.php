@@ -7,8 +7,8 @@ use Illuminate\Support\Str;
 
 class Log
 {
-    const HEADING_PATTERN = '/\[(?P<date>.*)\] (?P<logger>\w+).(?P<level>\w+): (?P<message>.*[^ ]+) (?P<context>[^ ]+) (?P<extra>[^ ]+)/';
-    const BACKUP_HEADING_PATTERN = '/\[(?P<date>.*)\] (?P<logger>\w+).(?P<level>\w+): (?P<message>.*[^ ]+)/';
+    public const HEADING_PATTERN = '/\[(?P<date>.*)\] (?P<logger>\w+).(?P<level>\w+): (?P<message>.*[^ ]+) (?P<context>[^ ]+) (?P<extra>[^ ]+)/';
+    public const BACKUP_HEADING_PATTERN = '/\[(?P<date>.*)\] (?P<logger>\w+).(?P<level>\w+): (?P<message>.*[^ ]+)/';
 
     public Carbon $date;
     public string $logger;
@@ -37,7 +37,7 @@ class Log
 
         preg_match(self::HEADING_PATTERN, $heading, $data);
 
-        if (!isset($data['date'])) {
+        if (! isset($data['date'])) {
             preg_match(self::BACKUP_HEADING_PATTERN, $heading, $data);
         }
 

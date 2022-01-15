@@ -18,7 +18,7 @@ class InstallLogViewer extends Command
 
         $this->call('vendor:publish', [
             '--provider' => "Label84\LogViewer\LogViewerServiceProvider",
-            '--tag' => 'config'
+            '--tag' => 'config',
         ]);
 
         $this->info('All done!');

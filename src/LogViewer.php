@@ -11,13 +11,13 @@ use Label84\LogViewer\Support\LogViewerLevel;
 
 class LogViewer
 {
-    const DATETIME_PATTERN = "/\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\].*/";
+    public const DATETIME_PATTERN = "/\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\].*/";
 
     protected string $path = '';
 
     public function setFile(string $file = null): self
     {
-        if (!$file) {
+        if (! $file) {
             throw LogFileException::noFileSet();
         }
 
@@ -28,7 +28,7 @@ class LogViewer
 
     public function setPath(string $path): self
     {
-        if (!$path) {
+        if (! $path) {
             throw LogFileException::noPathSet();
         }
 
@@ -39,7 +39,7 @@ class LogViewer
 
     public function setChannel(string $channel): self
     {
-        if (!in_array($channel, ['single', 'daily'])) {
+        if (! in_array($channel, ['single', 'daily'])) {
             throw LogChannelException::channelNotSupported(config('logviewer.log_channel') ?? '');
         }
 
@@ -57,11 +57,11 @@ class LogViewer
 
     public function logs(): LogViewerCollection
     {
-        if (!$this->path) {
+        if (! $this->path) {
             $this->setChannel(config('logviewer.log_channel'));
         }
 
-        if (!$this->path) {
+        if (! $this->path) {
             throw LogFileException::noFileSet();
         }
 
@@ -72,7 +72,7 @@ class LogViewer
 
     public function getPath(string $file = ''): string
     {
-        if (!$this->path) {
+        if (! $this->path) {
             $this->path = config('logviewer.log_files_directory');
         }
 
@@ -93,7 +93,7 @@ class LogViewer
 
     protected function getFileContent(string $path): string
     {
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             throw LogFileException::fileNotFound($path);
         }
 

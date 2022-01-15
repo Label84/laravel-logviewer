@@ -88,9 +88,9 @@ class LogViewerCollectionTest extends TestCase
 
         $this->assertEquals(10, $mergedCollection->whereDateBetween(today()->subDay(), today())->count());
         $this->assertEquals(10, $mergedCollection->whereDateBetween(
-                today()->subDay()->format('Y-m-d'),
-                today()->format('Y-m-d')
-            )->count());
+            today()->subDay()->format('Y-m-d'),
+            today()->format('Y-m-d')
+        )->count());
     }
 
     /** @test */
