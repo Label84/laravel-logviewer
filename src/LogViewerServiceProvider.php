@@ -4,7 +4,6 @@ namespace Label84\LogViewer;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Label84\LogViewer\Console\Commands\InstallLogViewer;
 
 class LogViewerServiceProvider extends ServiceProvider
 {
@@ -18,10 +17,6 @@ class LogViewerServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/logviewer'),
             ], 'views');
-
-            $this->commands([
-                InstallLogViewer::class,
-            ]);
         }
 
         $this->registerRoutes();

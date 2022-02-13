@@ -31,7 +31,6 @@ Laravel LogViewer enables you to view and filter your Laravel logs in the browse
 |---------|---------|
 | 9.x     | ^2.1    |
 | 8.x     | ^2.0    |
-| 7.x     | ^1.0    |
 
 ## Limitations
 
@@ -49,15 +48,11 @@ composer require label84/laravel-logviewer
 
 You can also manually update your composer.json.
 
-### 2. Install package
+### 2. Publish config file
 
 Add the config file to your application.
 
 ```sh
-php artisan logviewer:install
-
-OR
-
 php artisan vendor:publish --provider="Label84\LogViewer\LogViewerServiceProvider" --tag="config"
 ```
 
