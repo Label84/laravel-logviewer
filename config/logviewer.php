@@ -9,7 +9,7 @@ return [
      */
     'route' => [
         'prefix' => 'admin/logviewer',
-        'middleware' => ['web', 'auth'],
+        'middleware' => ['web'],
     ],
 
     /*
