@@ -70,7 +70,7 @@ class LogViewerCollection extends Collection
 
     public function whereLogger(array|string $logger): self
     {
-        if (is_string($logger)) {
+        if (! is_array($logger)) {
             $logger = [$logger];
         }
 
@@ -79,7 +79,7 @@ class LogViewerCollection extends Collection
 
     public function whereMessage(array|string $query): self
     {
-        if (is_string($query)) {
+        if (! is_array($query)) {
             $query = [$query];
         }
 
@@ -88,7 +88,7 @@ class LogViewerCollection extends Collection
 
     public function whereNotMessage(array|string $query): self
     {
-        if (is_string($query)) {
+        if (! is_array($query)) {
             $query = [$query];
         }
 
