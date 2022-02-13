@@ -26,8 +26,7 @@ class LogViewerLevel
         'emergency' => self::EMERGENCY,
     ];
 
-    /** @param string|int $level */
-    public static function get($level): int
+    public static function get(string|int $level): int
     {
         if (is_numeric($level)) {
             return (int) $level;

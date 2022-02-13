@@ -3,8 +3,8 @@
 namespace Label84\LogViewer\Support;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class LogViewerCollection extends Collection
@@ -25,26 +25,22 @@ class LogViewerCollection extends Collection
         );
     }
 
-    /** @param int|string $level */
-    public function whereLevel($level): self
+    public function whereLevel(int|string $level): self
     {
         return $this->filter(fn ($item) => LogViewerLevel::get($item->level) == LogViewerLevel::get($level));
     }
 
-    /** @param int|string $level */
-    public function whereMinLevel($level): self
+    public function whereMinLevel(int|string $level): self
     {
-        return $this->reject(fn ($item) => LogViewerLevel::get($item->level) < LogViewerLevel::get($level));
+        return $this->filter(fn ($item) => LogViewerLevel::get($item->level) >= LogViewerLevel::get($level));
     }
 
-    /** @param int|string $level */
-    public function whereMaxLevel($level): self
+    public function whereMaxLevel(int|string $level): self
     {
-        return $this->reject(fn ($item) => LogViewerLevel::get($item->level) > LogViewerLevel::get($level));
+        return $this->filter(fn ($item) => LogViewerLevel::get($item->level) <= LogViewerLevel::get($level));
     }
 
-    /** @param Carbon|string $date */
-    public function whereDate($date): self
+    public function whereDate(Carbon|string $date): self
     {
         if ($date instanceof Carbon) {
             return $this->whereDateBetween($date, $date->copy());
@@ -53,33 +49,26 @@ class LogViewerCollection extends Collection
         return $this->whereDateBetween(Carbon::parse($date), Carbon::parse($date));
     }
 
-    /**
-     * @param Carbon|string $startDate
-     * @param Carbon|string $endDate
-     */
-    public function whereDateBetween($startDate, $endDate): self
+    public function whereDateBetween(Carbon|string $startDate, Carbon|string $endDate): self
     {
         return $this->whereDateFrom($startDate)->whereDateTill($endDate);
     }
 
-    /** @param Carbon|string $date */
-    public function whereDateFrom($date): self
+    public function whereDateFrom(Carbon|string $date): self
     {
         $date = $date instanceof Carbon ? $date : Carbon::parse($date);
 
         return $this->reject(fn ($item) => $item->date->isBefore($date->startOfDay()));
     }
 
-    /** @param Carbon|string $date */
-    public function whereDateTill($date): self
+    public function whereDateTill(Carbon|string $date): self
     {
         $date = $date instanceof Carbon ? $date : Carbon::parse($date);
 
         return $this->reject(fn ($item) => $item->date->isAfter($date->endOfDay()));
     }
 
-    /** @param array|string $logger */
-    public function whereLogger($logger): self
+    public function whereLogger(array|string $logger): self
     {
         if (is_string($logger)) {
             $logger = [$logger];
@@ -88,8 +77,7 @@ class LogViewerCollection extends Collection
         return $this->whereIn('logger', $logger);
     }
 
-    /** @param array|string $query */
-    public function whereMessage($query): self
+    public function whereMessage(array|string $query): self
     {
         if (is_string($query)) {
             $query = [$query];
@@ -98,8 +86,7 @@ class LogViewerCollection extends Collection
         return $this->filter(fn ($item) => Str::contains($item->message, $query));
     }
 
-    /** @param array|string $query */
-    public function whereNotMessage($query): self
+    public function whereNotMessage(array|string $query): self
     {
         if (is_string($query)) {
             $query = [$query];

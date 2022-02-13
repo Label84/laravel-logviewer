@@ -9,15 +9,15 @@ use Label84\LogViewer\Facades\LogViewer;
 
 class LogViewerController extends Controller
 {
-    public function index(Request $request): View
+    public function __invoke(Request $request): View
     {
         $items = LogViewer::logs()
-            ->when($request->has('level'), fn ($collection) => $collection->whereLevel($request->query('level')))
-            ->when($request->has('date'), fn ($collection) => $collection->whereDate($request->query('date')))
-            ->when($request->has('from'), fn ($collection) => $collection->whereDateFrom($request->query('from')))
-            ->when($request->has('till'), fn ($collection) => $collection->whereDateTill($request->query('till')))
-            ->when($request->has('logger'), fn ($collection) => $collection->whereLogger($request->query('logger')))
-            ->when($request->has('message'), fn ($collection) => $collection->whereMessage($request->query('message')))
+            ->when($request->has('level'), fn ($logs) => $logs->whereLevel((int) $request->query('level')))
+            ->when($request->has('date'), fn ($logs) => $logs->whereDate($request->query('date')))
+            ->when($request->has('from'), fn ($logs) => $logs->whereDateFrom($request->query('from')))
+            ->when($request->has('till'), fn ($logs) => $logs->whereDateTill($request->query('till')))
+            ->when($request->has('logger'), fn ($logs) => $logs->whereLogger($request->query('logger')))
+            ->when($request->has('message'), fn ($logs) => $logs->whereMessage($request->query('message')))
             ->paginate(config('logviewer.view.items_per_page'));
 
         return view('logviewer::index', compact('items'));

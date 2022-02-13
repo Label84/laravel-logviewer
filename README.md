@@ -23,14 +23,14 @@ Laravel LogViewer enables you to view and filter your Laravel logs in the browse
 ## Requirements
 
 - Laravel 8.x or 9.x
-- PHP >=7.4 or 8.x
+- PHP 8.x
 
 ## Laravel support
 
 | Version | Release |
 |---------|---------|
-| 9.x     | ^2.1    |
-| 8.x     | ^2.0    |
+| 9.x     | ^3.0    |
+| 8.x     | ^2.1    |
 
 ## Limitations
 
