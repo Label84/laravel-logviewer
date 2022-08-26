@@ -55,7 +55,7 @@
                             </span>
                         </th>
                         <td class="text-gray-700 py-4 px-2">
-                            <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold {{ $item->getClassesForLevel() }}">
+                            <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold text-white {{ $item->getClassesForLevel() }}">
                                 {{ $item->level }}
                             </span>
                         </td>

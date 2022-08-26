@@ -82,13 +82,13 @@ return [
      * TailwindCSS classes to be applied to the log level badges in the view.
      */
     'classes' => [
-        'debug' => 'bg-gray-100 text-gray-800',
-        'info' => 'bg-blue-100 text-blue-800',
-        'notice' => 'bg-blue-100 text-blue-800',
-        'warning' => 'bg-yellow-100 text-yellow-800',
-        'error' => 'bg-red-100 text-red-800',
-        'critical' => 'bg-red-100 text-red-800',
-        'alert' => 'bg-red-100 text-red-800',
-        'emergency' => 'bg-red-100 text-red-800',
+        'debug' => 'bg-gray-400',
+        'info' => 'bg-blue-400',
+        'notice' => 'bg-blue-400',
+        'warning' => 'bg-yellow-400',
+        'error' => 'bg-red-400',
+        'critical' => 'bg-red-400',
+        'alert' => 'bg-red-400',
+        'emergency' => 'bg-red-400',
     ],
 ];
