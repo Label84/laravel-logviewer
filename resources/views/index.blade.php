@@ -25,28 +25,28 @@
                 @endif
             </h1>
             <p class="mb-5">
-                <a href="/" class="text-gray-400 hover:text-gray-800">
+                <a href="{{ config('logviewer.view.back_to_application_link_url') ?? '/' }}" class="text-gray-400 hover:text-gray-800">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                     </svg>
-                    Back to Laravel
+                    {{ config('logviewer.view.back_to_application_link_title') ?? 'Back to Laravel' }}
                 </a>
             </p>
         </div>
 
-        <div class="overflow-x-auto relative rounded-md shadow">
+        <div class="overflow-x-auto relative rounded-md shadow-md">
             <table class="w-full">
-                <thead class="text-xs text-left bg-gray-700 border-b">
+                <thead class="text-xs text-left bg-gray-50 border-b">
                     <tr>
-                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Date</th>
-                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Level</th>
-                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Environment</th>
-                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Description</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800">Date</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800">Level</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800">Environment</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800">Description</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($items as $i => $item)
-                    <tr class="border-b {{ $item->isNew() ? 'bg-gray-50' : 'bg-white' }} hover:bg-gray-50">
+                    <tr class="border-b {{ $item->isNew() ? 'bg-gray-100' : 'bg-white' }}">
                         <th scope="row" class="text-left py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
                             <span class="text-nowrap {{ $item->isNew() ? 'font-semibold' : 'font-normal' }}">
                                 <abbr title="{{ $item->date->toDatetimeString() }}">

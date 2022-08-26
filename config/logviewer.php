@@ -26,6 +26,16 @@ return [
         'title' => 'LogViewer',
 
         /**
+         * Set the preferred URL for the 'Back to Laravel' link.
+         */
+        'back_to_application_link_url' => '/',
+
+        /**
+         * Set the title for the 'Back to Laravel' link.
+         */
+        'back_to_application_link_title' => 'Back to Laravel',
+
+        /**
          * Limit the number of items per page.
          */
         'items_per_page' => 50,
