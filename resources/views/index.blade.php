@@ -3,72 +3,77 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <title>{{ config('logviewer.view.title', 'LogViewer') }}</title>
 </head>
 
-<body>
-    <main>
-        <section class="py-2 container-fluid">
-            <h1>
-                <a href="{{ route('logviewer.index') }}" class="link-dark text-decoration-none">
+<body class="bg-gray-100">
+    <main class="max-w-7xl mx-auto px-4 lg:px-0">
+        <div>
+            <h1 class="mt-5 mb-3 text-gray-700">
+                <a href="{{ route('logviewer.index') }}" class="text-3xl font-bold underline">
                     {{ config('logviewer.view.title', 'LogViewer') }}
                 </a>
 
                 @if(config('logviewer.view.show_logger'))
-                <span class="fs-6 float-end text-muted">
-                    logger: <strong>{{ config('logviewer.log_channel') }}</strong>
+                <span class="float-right">
+                    Channel: <strong>{{ config('logviewer.log_channel') }}</strong>
                 </span>
                 @endif
             </h1>
-            <div class="row">
-                <div class="table-responsive">
-                    <table class="table align-middle">
-                        <thead>
-                            <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Level</th>
-                                <th scope="col">Logger</th>
-                                <th scope="col">Message</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($items as $item)
-                            <tr>
-                                <th scope="row">
-                                    <span class="text-nowrap">
-                                        @if($item->isNew())
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="mr-2" style="height: 20px; width: auto;">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                        </svg>
-                                        @endif
-                                        <abbr title="{{ $item->date->toDatetimeString() }}">
-                                            {{ $item->date->diffForHumans() }}
-                                        </abbr>
-                                    </span>
-                                </th>
-                                <td>
-                                    <span class="badge {{ $item->getClassesForLevel() }}">
-                                        {{ $item->level }}
-                                    </span>
-                                </td>
-                                <td>{{ $item->logger }}</td>
-                                <td>{{ $item->message }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <p class="mb-5">
+                <a href="/" class="text-gray-400 hover:text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                    </svg>
+                    Back to Laravel
+                </a>
+            </p>
+        </div>
 
-                <div class="mt-3">
-                    {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
-                </div>
-            </div>
-        </section>
+        <div class="overflow-x-auto relative rounded-md shadow">
+            <table class="w-full">
+                <thead class="text-xs text-left bg-gray-700 border-b">
+                    <tr>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Date</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Level</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Environment</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-white">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($items as $i => $item)
+                    <tr class="border-b {{ $item->isNew() ? 'bg-gray-50' : 'bg-white' }} hover:bg-gray-50">
+                        <th scope="row" class="text-left py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
+                            <span class="text-nowrap {{ $item->isNew() ? 'font-semibold' : 'font-normal' }}">
+                                <abbr title="{{ $item->date->toDatetimeString() }}">
+                                    {{ $item->date->diffForHumans() }}
+                                </abbr>
+                            </span>
+                        </th>
+                        <td class="text-gray-700 py-4 px-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold {{ $item->getClassesForLevel() }}">
+                                {{ $item->level }}
+                            </span>
+                        </td>
+                        <td class="text-gray-400 py-4 px-3">
+                            {{ $item->logger }}
+                        </td>
+                        <td class="text-gray-700 py-4 px-3 {{ $item->isNew() ? 'font-semibold' : 'font-normal' }}">
+                            {{ $item->message }}
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 mb-12">
+            {{ $items->appends(request()->query())->links() }}
+        </div>
     </main>
 </body>
 

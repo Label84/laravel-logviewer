@@ -32,10 +32,6 @@ Laravel LogViewer enables you to view and filter your Laravel logs in the browse
 | 9.x     | ^3.0    |
 | 8.x     | ^2.1    |
 
-## Limitations
-
-This package only support logs created by the [Monolog PHP logging libary](https://seldaek.github.io/monolog). Laravel uses this libary by default for the 'single' and 'daily' channels. For more information see [Laravel - Logging](https://laravel.com/docs/8.x/logging).
-
 ## Installation
 
 ### 1. Require package

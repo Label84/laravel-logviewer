@@ -72,6 +72,28 @@ class Log
 
     public function getClassesForLevel(): string
     {
-        return config('logviewer.classes')[$this->level] ?? '';
+        $class = config('logviewer.classes')[$this->level] ?? '';
+
+        // convert Bootstrap class to TailwindCSS classes for applications with an older published config file
+        switch ($class) {
+            case 'bg-primary':
+                $class = 'bg-gray-100 text-gray-800';
+
+                break;
+            case 'bg-info':
+                $class = 'bg-blue-100 text-blue-800';
+
+                break;
+            case 'bg-warning':
+                $class = 'bg-yellow-100 text-yellow-800';
+
+                break;
+            case 'bg-danger':
+                $class = 'bg-red-100 text-red-800';
+
+                break;
+        }
+
+        return $class;
     }
 }

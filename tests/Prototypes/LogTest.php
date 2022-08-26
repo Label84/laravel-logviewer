@@ -54,26 +54,26 @@ class LogTest extends TestCase
     }
 
     /** @test */
-    public function it_marks_log_as_new_when_created_within_last_10_minutes()
+    public function it_marks_log_as_new_when_created_within_last_60_minutes()
     {
         $fm = new FactoryMuffin();
         $fm->loadFactories('tests/factories');
 
         $log = $fm->instance(Log::class, [
-           'date' => now()->subMinutes(9),
+           'date' => now()->subMinutes(59),
         ]);
 
         $this->assertTrue($log->isNew());
     }
 
     /** @test */
-    public function it_marks_log_as_not_new_when_created_more_than_10_minutes_ago()
+    public function it_marks_log_as_not_new_when_created_more_than_60_minutes_ago()
     {
         $fm = new FactoryMuffin();
         $fm->loadFactories('tests/factories');
 
         $log = $fm->instance(Log::class, [
-           'date' => now()->subMinutes(11),
+           'date' => now()->subMinutes(61),
         ]);
 
         $this->assertFalse($log->isNew());
