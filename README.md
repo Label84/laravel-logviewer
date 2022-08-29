@@ -6,9 +6,9 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-logviewer.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-logviewer)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/label84/laravel-logviewer/run-tests?label=Tests&style=flat-square)
 
-Laravel LogViewer enables you to view and filter your Laravel logs in the browser.
+LogViewer enables you to view and filter your Laravel logs in the browser.
 
-![LogViewer screenshot](./docs/screenshot_default.png?raw=true "LogViewer Screenshot")
+![LogViewer screenshot](./docs/screenshot-default.png?raw=true "LogViewer Screenshot")
 
 - [Requirements](#requirements)
 - [Laravel support](#laravel-support)
