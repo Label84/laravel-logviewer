@@ -1,6 +1,6 @@
 {
     "name": "label84/laravel-logviewer",
-    "description": "A log viewer package.",
+    "description": "Simple log viewer for your Laravel application.",
     "type": "library",
     "license": "MIT",
     "authors": [
