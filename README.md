@@ -10,8 +10,7 @@ LogViewer enables you to view and filter your Laravel logs in the browser.
 
 ![LogViewer screenshot](./docs/screenshot-default.png?raw=true "LogViewer Screenshot")
 
-- [Requirements](#requirements)
-- [Laravel support](#laravel-support)
+- [Laravel Support](#laravel-support)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Query filters](#query-filters)
@@ -20,15 +19,11 @@ LogViewer enables you to view and filter your Laravel logs in the browser.
 - [Tests](#tests)
 - [License](#license)
 
-## Requirements
-
-- Laravel 8.x or 9.x
-- PHP 8.x
-
-## Laravel support
+## Laravel Support
 
 | Version | Release |
 |---------|---------|
+| 10.x    | ^3.0    |
 | 9.x     | ^3.0    |
 | 8.x     | ^2.1    |
 

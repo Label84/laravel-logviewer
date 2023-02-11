@@ -8,7 +8,6 @@ parameters:
         - routes
         - config
 
-    # The level 9 is the highest level
     level: 8
 
     ignoreErrors:
@@ -16,4 +15,4 @@ parameters:
     excludePaths:
 
     checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false 
+    checkGenericClassInNonGenericObjectType: false
