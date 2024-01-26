@@ -2,7 +2,7 @@
 >
 > This package is no longer maintained.
 >
-> We have decided to stop maintaining this package. We don't use ActiveCampaign anymore and don't have the time to maintain this package.
+> We have decided to stop maintaining this package. We don't use this package anymore and don't have the time to maintain this package.
 >
 > Feel free to fork our code and adapt it to your needs.
 
