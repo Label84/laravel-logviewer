@@ -10,7 +10,6 @@
 
 [![Latest Stable Version](https://poser.pugx.org/label84/laravel-logviewer/v/stable?style=flat-square)](https://packagist.org/packages/label84/laravel-logviewer)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Quality Score](https://img.shields.io/scrutinizer/g/label84/laravel-logviewer.svg?style=flat-square)](https://scrutinizer-ci.com/g/label84/laravel-logviewer)
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-logviewer.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-logviewer)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/label84/laravel-logviewer/run-tests.yml?branch=master&style=flat-square)
 
